@@ -32,9 +32,6 @@
                 <button onclick="switchTab('equipment')" id="nav-equipment" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-md transition-colors text-cyan-300 hover:text-white hover:bg-cyan-800">
                     <i data-lucide="settings" class="w-5 h-5"></i> Equipment Match
                 </button>
-                <button onclick="switchTab('technology')" id="nav-technology" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-md transition-colors text-cyan-300 hover:text-white hover:bg-cyan-800">
-                    <i data-lucide="shield-check" class="w-5 h-5"></i> Asset Health
-                </button>
             </div>
         </div>
     </header>
@@ -44,7 +41,6 @@
         <button onclick="switchTab('calculator')" id="mob-calculator" class="mob-btn active flex-1 flex justify-center items-center gap-2 px-3 py-3 whitespace-nowrap text-xs bg-cyan-600 text-white rounded shadow">ROI</button>
         <button onclick="switchTab('turnover')" id="mob-turnover" class="mob-btn flex-1 flex justify-center items-center gap-2 px-3 py-3 whitespace-nowrap text-xs text-cyan-300">Turnover</button>
         <button onclick="switchTab('equipment')" id="mob-equipment" class="mob-btn flex-1 flex justify-center items-center gap-2 px-3 py-3 whitespace-nowrap text-xs text-cyan-300">Equipment</button>
-        <button onclick="switchTab('technology')" id="mob-technology" class="mob-btn flex-1 flex justify-center items-center gap-2 px-3 py-3 whitespace-nowrap text-xs text-cyan-300">Health</button>
     </div>
 
     <main class="max-w-6xl mx-auto p-4 md:p-6 pb-20">
@@ -84,7 +80,7 @@
                                 <option value="SLEMCO">SLEMCO / LUS (Custom)</option>
                             </select>
                             <label class="flex items-center text-sm text-slate-700 gap-2 cursor-pointer">
-                                <input type="checkbox" id="includeRebate" checked class="rounded border-slate-300 text-cyan-600 w-4 h-4"> 
+                                <input type="checkbox" id="includeRebate" class="rounded border-slate-300 text-cyan-600 w-4 h-4"> 
                                 Apply rebate to ROI
                             </label>
                         </div>
@@ -94,6 +90,7 @@
                                 <option value="0.80">Tier 1: Pentair SuperFlo VST</option>
                                 <option value="0.70">Tier 1: Hayward XE w/ OmniX</option>
                                 <option value="0.88" selected>Tier 2: Pentair IntelliFlo3 VSF</option>
+                                <option value="0.81">Tier 2: Hayward TriStar VS 900</option>
                                 <option value="0.82">Tier 2: Hayward TriStar VS 950</option>
                             </select>
                         </div>
@@ -113,7 +110,7 @@
                             <div class="bg-emerald-600 text-white p-4 rounded-xl shadow-lg text-center">
                                 <p class="text-emerald-200 font-medium uppercase tracking-wider text-xs mb-1">5-Year Net ROI</p>
                                 <p class="text-3xl font-extrabold mb-1">$<span id="netFiveYearSavings">0</span></p>
-                                <p class="text-xs opacity-90">Rebate included</p>
+                                <p class="text-xs opacity-90">Rebate included if selected</p>
                             </div>
                         </div>
                         <div class="bg-slate-800 text-white p-6 rounded-xl shadow-lg text-center">
@@ -230,7 +227,7 @@
                     </div>
                     <div class="p-6 flex-grow space-y-6">
                         <!-- SuperFlo -->
-                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex flex-col h-full">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 flex flex-col">
                             <div>
                                 <h4 class="font-bold text-cyan-800 flex items-center justify-between">
                                     Pentair SuperFlo VST
@@ -249,7 +246,7 @@
                         </div>
 
                         <!-- XE Series -->
-                        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 border-l-4 border-l-orange-500 flex flex-col h-full">
+                        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 border-l-4 border-l-orange-500 flex flex-col">
                             <div>
                                 <h4 class="font-bold text-orange-900 flex items-center justify-between">
                                     Hayward XE w/ OmniX
@@ -278,7 +275,7 @@
                     </div>
                     <div class="p-6 flex-grow space-y-6">
                         <!-- IntelliFlo3 -->
-                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm flex flex-col h-full">
+                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm flex flex-col">
                             <div>
                                 <h4 class="font-bold text-cyan-800">Pentair IntelliFlo3 VSF</h4>
                                 <p class="text-xs text-slate-600 mt-1 italic">3.0 HP High-Performance Hub</p>
@@ -293,8 +290,24 @@
                             </div>
                         </div>
 
+                        <!-- TriStar 900 -->
+                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm flex flex-col">
+                            <div>
+                                <h4 class="font-bold text-slate-800">Hayward TriStar VS 900</h4>
+                                <p class="text-xs text-slate-600 mt-1 italic">1.85 HP Mid-Size Powerhouse</p>
+                                <ul class="mt-3 space-y-2 text-sm text-slate-700 mb-4">
+                                    <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 shrink-0 mt-0.5 w-4 h-4"></i> Exceptional hydraulic efficiency for standard to large pools</li>
+                                    <li class="flex items-start gap-2"><i data-lucide="check-circle" class="text-emerald-500 shrink-0 mt-0.5 w-4 h-4"></i> Fully compatible with Hayward OmniLogic automation</li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto bg-cyan-50 p-3 rounded border border-cyan-100 flex justify-between items-center">
+                                <span class="text-xs font-bold text-cyan-800 uppercase">Projected Energy Cost</span>
+                                <span class="text-xl font-extrabold text-cyan-700">$<span id="cost-tristar900">0</span><span class="text-sm font-normal text-cyan-600">/mo</span></span>
+                            </div>
+                        </div>
+
                         <!-- TriStar 950 -->
-                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm flex flex-col h-full">
+                        <div class="bg-white p-4 rounded-lg border border-slate-100 shadow-sm flex flex-col">
                             <div>
                                 <h4 class="font-bold text-slate-800">Hayward TriStar VS 950</h4>
                                 <p class="text-xs text-slate-600 mt-1 italic">2.7 HP Heavy-Duty Powerhouse</p>
@@ -311,28 +324,6 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- TAB 4: ASSET HEALTH -->
-        <div id="tab-technology" class="tab-content hidden space-y-6 animate-in fade-in duration-300">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4">Asset Protection Checklist</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
-                    <i data-lucide="flame" class="text-orange-500 mb-4 w-8 h-8"></i>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">Heater Longevity</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">Low flow is the #1 killer of heat exchangers. VSPs ensure the constant 25-40 GPM required for safe, efficient ignition without over-pressurizing.</p>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
-                    <i data-lucide="zap" class="text-cyan-500 mb-4 w-8 h-8"></i>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">Salt Cell Efficiency</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">Salt systems require steady flow to produce sanitizer. 24-hour VSP circulation eliminates the "No Flow" alarms common in Lafayette summers.</p>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
-                    <i data-lucide="shield-check" class="text-emerald-500 mb-4 w-8 h-8"></i>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">Hermetic Defense</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed">Our VSPs feature TEFC motors and Viton® seals, protecting your equipment from the extreme Louisiana humidity and salt-heavy environments.</p>
-                </div>
             </div>
         </div>
 
@@ -363,7 +354,7 @@
             const poolVolume = parseInt(volumeInput.value);
             const plumbingMultiplier = parseFloat(plumbingSelector.value);
             const upgradeCost = parseFloat(upgradeCostInput?.value) || 0;
-            const applyRebate = includeRebate?.checked ?? true;
+            const applyRebate = includeRebate?.checked ?? false;
             const savingsFactor = parseFloat(vspModelSelector?.value) || 0.88;
             
             // Map HP selection to estimated Watts and GPM
@@ -409,6 +400,7 @@
             if (document.getElementById('cost-superflo')) document.getElementById('cost-superflo').innerText = Math.round(monthlyBill * (1 - 0.80)); // 80% savings
             if (document.getElementById('cost-xe')) document.getElementById('cost-xe').innerText = Math.round(monthlyBill * (1 - 0.70)); // 70% savings (Simpler operation)
             if (document.getElementById('cost-intelliflo')) document.getElementById('cost-intelliflo').innerText = Math.round(monthlyBill * (1 - 0.88)); // 88% savings (Sensorless flow advantage)
+            if (document.getElementById('cost-tristar900')) document.getElementById('cost-tristar900').innerText = Math.round(monthlyBill * (1 - 0.81)); // 81% savings (Standard efficiency)
             if (document.getElementById('cost-tristar')) document.getElementById('cost-tristar').innerText = Math.round(monthlyBill * (1 - 0.82)); // 82% savings (Heavy duty efficiency)
 
             // ==========================================
